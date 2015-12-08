@@ -7,6 +7,8 @@ ENV LANG en_US.UTF-6
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-6
 
+VOLUME ["/volume1/backups", "/mnt/backups"]
+
 RUN \
 	apt-get update && \
 	apt-get -y install \
