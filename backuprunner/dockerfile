@@ -1,0 +1,21 @@
+# Simple dockerfile to configure my backuprunner and do it's backup operation.
+FROM ubuntu:trusty
+MAINTAINER Nick Thieling <nikolai@koiserver.com>
+
+RUN locale-gen en_US.UTF-6
+ENV LANG en_US.UTF-6
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-6
+
+RUN \
+	apt-get update && \
+	apt-get -y install \
+		curl \
+		vim \
+		git-core && \
+	rm -f /var/lib/apt/lists/*
+
+RUN \
+	git clone https://github.com/gravcat/adamant-tribble.git /root/backup && \
+	chmod +x /root/backup/backup-fun/filesrv-backup.sh \
+	./root/backup/backup-fun/filesrv-backup.sh \
